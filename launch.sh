@@ -9,8 +9,8 @@ if [[ "$#" -eq 0 ]]; then
         echo "Please make sure to run in the directory with the xv6 source."
     fi
 else
-    XV6_DIR=$(readlink -f $1)
-    if [ -d "$XV6_DIR" ]; then
+    if [ -d "$1" ]; then
+        XV6_DIR=$(cd $1; pwd)
         if [ -f "$XV6_DIR/Makefile" ]; then
             docker run -it --rm -v "$XV6_DIR":/xv6 thewiz/xv6:latest
         else
